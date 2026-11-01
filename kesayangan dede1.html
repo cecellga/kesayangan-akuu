@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Kita ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+:root {
+  --cream: #fff0cf;
+  --gold: #f6c977;
+  --wood: #75472e;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: var(--cream);
+  background: #101b2c;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+[hidden] { display: none !important; }
+
+/* HALAMAN KUNCI */
+#lock {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 50% 30%, #35445a, transparent 60%),
+    #101725;
+}
+
+.lock-card {
+  width: min(100%, 370px);
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid #c8a675;
+  border-radius: 18px;
+  background: #19263a;
+  box-shadow: 0 15px 50px #0007;
+}
+
+.lock-card h1 { color: var(--gold); }
+
+.lock-card input {
+  width: 100%;
+  padding: 13px;
+  margin: 12px 0;
+  border: 1px solid #8b785f;
+  border-radius: 9px;
+  background: #101725;
+  color: white;
+  text-align: center;
+}
+
+.lock-card button, .control {
+  padding: 10px 15px;
+  color: #24180f;
+  border: 0;
+  border-radius: 9px;
+  background: var(--gold);
+}
+
+#message { min-height: 20px; color: #ffd9a0; }
+
+/* KAMAR */
+#website { overflow: hidden; }
+
+.room {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 53%, #68503a 0%, transparent 30%),
+    linear-gradient(180deg, #17263a 0%, #25364a 55%, #67462f 55%, #3e281e 100%);
+}
+
+/* JENDELA */
+.window {
+  position: absolute;
+  top: 8%;
+  left: 6%;
+  width: 25%;
+  height: 30%;
+  border: 9px solid #543622;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 70% 22%, #fff0b6 0 2%, transparent 3%),
+    radial-gradient(circle at 22% 38%, #e7e8eb 0 1px, transparent 2px),
+    radial-gradient(circle at 55% 68%, #fff 0 1px, transparent 2px),
+    linear-gradient(#14213a, #465773);
+  box-shadow: inset 0 0 20px #0008, 0 5px 12px #0004;
+}
+
+.window::before, .window::after {
+  content: "";
+  position: absolute;
+  background: #543622;
+}
+
+.window::before { width: 7px; height: 100%; left: 50%; }
+.window::after { height: 7px; width: 100%; top: 50%; }
+
+.curtain {
+  position: absolute;
+  top: -9px;
+  bottom: -5px;
+  width: 19%;
+  background: repeating-linear-gradient(90deg, #5d3026 0 10px, #794536 11px 18px);
+  z-index: 1;
+}
+
+.curtain.left { left: -12px; }
+.curtain.right { right: -12px; }
+
+/* LAMPU */
+.lamp {
+  position: absolute;
+  right: 8%;
+  top: 30%;
+  width: 85px;
+  height: 145px;
+  filter: drop-shadow(0 0 20px #f6c97755);
+}
+
+.lamp .shade {
+  position: absolute;
+  left: 4px;
+  top: 0;
+  width: 78px;
+  height: 52px;
+  background: #d6b27c;
+  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+}
+
+.lamp .stem {
+  position: absolute;
+  left: 40px;
+  top: 50px;
+  width: 6px;
+  height: 72px;
+  background: #a88655;
+}
+
+.lamp .base {
+  position: absolute;
+  left: 17px;
+  bottom: 0;
+  width: 50px;
+  height: 13px;
+  border-radius: 50%;
+  background: #a88655;
+}
+
+/* TEMPAT TIDUR */
+.bed {
+  position: absolute;
+  z-index: -1;
+  bottom: 8%;
+  left: 24%;
+  width: 53%;
+  height: 30%;
+  border-radius: 15px 15px 5px 5px;
+  background: #69452e;
+  box-shadow: 0 18px 24px #0005;
+}
+
+.headboard {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  height: 42px;
+  border-radius: 10px 10px 0 0;
+  background: #805637;
+}
+
+.mattress {
+  position: absolute;
+  inset: 10px 8px 0;
+  border-radius: 12px 12px 4px 4px;
+  background: #d8c8a9;
+}
+
+.blanket {
+  position: absolute;
+  left: 35%;
+  right: 5%;
+  top: 38px;
+  bottom: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #40566b, #25394d);
+}
+
+.pillow {
+  position: absolute;
+  top: 20px;
+  left: 8%;
+  width: 24%;
+  height: 45px;
+  border-radius: 12px;
+  background: #f0dfbd;
+}
+
+/* KARPET */
+.rug {
+  position: absolute;
+  bottom: 1%;
+  left: 31%;
+  width: 43%;
+  height: 10%;
+  border-radius: 50%;
+  background: #8d6749;
+  opacity: .7;
+}
+
+/* JUDUL */
+.room-heading {
+  position: relative;
+  z-index: 5;
+  padding: 25px 16px 0;
+  text-align: center;
+  text-shadow: 0 3px 12px #0008;
+}
+
+.room-heading h1 {
+  margin: 0;
+  color: #ffe0a0;
+  font-size: clamp(27px, 5vw, 48px);
+}
+
+.room-heading p {
+  margin: 9px 0;
+  font-size: 14px;
+}
+
+/* FOTO MENYEBAR KE SELURUH KAMAR */
+.photo-space {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.photo {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  width: clamp(78px, 12vw, 145px);
+  padding: 6px 6px 23px;
+  background: #fff9e9;
+  box-shadow: 0 8px 22px #0008;
+  transform: rotate(var(--rotation));
+  animation: float-photo var(--duration) ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+  pointer-events: auto;
+  cursor: zoom-in;
+  transition: box-shadow .25s;
+}
+
+.photo:hover {
+  z-index: 10;
+  box-shadow: 0 12px 30px #000b;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: #c7bba5;
+}
+
+.photo figcaption {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  bottom: 4px;
+  overflow: hidden;
+  color: #3e3026;
+  font-size: 10px;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@keyframes float-photo {
+  0% {
+    translate: 0 0;
+    rotate: -3deg;
+  }
+  50% {
+    translate: var(--drift-x) var(--drift-y);
+    rotate: 3deg;
+  }
+  100% {
+    translate: var(--drift-x2) var(--drift-y2);
+    rotate: -1deg;
+  }
+}
+
+/* SETIAP FOTO MEMILIKI POSISI BERBEDA */
+.p1 { --left: 5%;  --top: 17%; --rotation: -9deg; --duration: 7s; --delay: -1s; --drift-x: 12px; --drift-y: -18px; --drift-x2: -7px; --drift-y2: 9px; }
+.p2 { --left: 37%; --top: 19%; --rotation: 7deg;  --duration: 9s; --delay: -4s; --drift-x: -15px; --drift-y: 13px; --drift-x2: 10px; --drift-y2: -10px; }
+.p3 { --left: 76%; --top: 17%; --rotation: 10deg; --duration: 8s; --delay: -2s; --drift-x: -12px; --drift-y: -15px; --drift-x2: 7px; --drift-y2: 12px; }
+.p4 { --left: 15%; --top: 43%; --rotation: 6deg;  --duration: 10s; --delay: -6s; --drift-x: -10px; --drift-y: -13px; --drift-x2: 14px; --drift-y2: 9px; }
+.p5 { --left: 65%; --top: 43%; --rotation: -7deg; --duration: 7.5s; --delay: -3s; --drift-x: 14px; --drift-y: 10px; --drift-x2: -12px; --drift-y2: -13px; }
+.p6 { --left: 3%;  --top: 67%; --rotation: -5deg; --duration: 9.5s; --delay: -5s; --drift-x: 12px; --drift-y: -11px; --drift-x2: -9px; --drift-y2: 13px; }
+.p7 { --left: 43%; --top: 69%; --rotation: 8deg;  --duration: 8.5s; --delay: -2s; --drift-x: -13px; --drift-y: 10px; --drift-x2: 8px; --drift-y2: -14px; }
+.p8 { --left: 79%; --top: 66%; --rotation: -8deg; --duration: 11s; --delay: -7s; --drift-x: 9px; --drift-y: -14px; --drift-x2: -14px; --drift-y2: 8px; }
+
+/* KONTROL */
+.controls {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 15px 12px 25px;
+}
+
+.control {
+  font-size: 13px;
+  box-shadow: 0 3px 10px #0003;
+}
+
+.memories-content {
+  position: relative;
+  z-index: 5;
+  padding: 24px 18px 50px;
+  background: linear-gradient(#17263aee, #101725f5);
+  text-align: center;
+}
+
+.memories-content h2 { color: var(--gold); }
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+  max-width: 850px;
+  margin: 24px auto;
+}
+
+.media-grid video {
+  width: 100%;
+  border: 5px solid #805637;
+  border-radius: 12px;
+  background: #000;
+}
+
+.letter {
+  max-width: 620px;
+  margin: 28px auto;
+  padding: 24px;
+  color: #f9e9c9;
+  line-height: 1.8;
+  border: 1px solid #a78a60;
+  border-radius: 14px;
+  background: #1c2b40;
+}
+
+footer {
+  padding: 18px;
+  color: #c8b69a;
+  font-size: 12px;
+}
+
+/* FOTO BESAR */
+#viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #060b12ed;
+}
+
+.viewer-inner {
+  width: min(100%, 850px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+#bigPhoto {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  transform-origin: center;
+  transition: transform .12s;
+  user-select: none;
+}
+
+.viewer-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.viewer-controls button {
+  padding: 10px 14px;
+  color: white;
+  border: 1px solid #8d785c;
+  border-radius: 8px;
+  background: #25364a;
+}
+
+#photoCaption { color: #ffe0a0; }
+
+@media (max-width: 600px) {
+  .window { top: 13%; left: 5%; width: 34%; height: 22%; }
+  .lamp { top: 31%; right: 4%; transform: scale(.7); transform-origin: top right; }
+  .bed { left: 17%; width: 68%; bottom: 11%; height: 23%; }
+  .rug { left: 24%; width: 55%; }
+  .photo { width: clamp(66px, 19vw, 94px); padding: 4px 4px 19px; }
+  .photo figcaption { font-size: 8px; }
+  .p1 { --left: 3%; --top: 22%; }
+  .p2 { --left: 39%; --top: 24%; }
+  .p3 { --left: 72%; --top: 20%; }
+  .p4 { --left: 4%; --top: 44%; }
+  .p5 { --left: 72%; --top: 43%; }
+  .p6 { --left: 5%; --top: 68%; }
+  .p7 { --left: 39%; --top: 71%; }
+  .p8 { --left: 74%; --top: 67%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { animation: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- KUNCI -->
+<section id="lock">
+  <div class="lock-card">
+    <div style="font-size:42px">♡</div>
+    <h1>Ruang Kita</h1>
+    <p>Sebuah ruang kecil untuk cerita kita berdua.</p>
+    <form id="lockForm">
+      <input id="passcode" type="password" placeholder="Masukkan kode rahasia" autocomplete="off" required>
+      <button type="submit">Masuk ke kamar ♡</button>
+    </form>
+    <p id="message"></p>
+  </div>
+</section>
+
+<!-- WEBSITE UTAMA -->
+<main id="website" hidden>
+  <section class="room">
+    <div class="window">
+      <div class="curtain left"></div>
+      <div class="curtain right"></div>
+    </div>
+
+    <div class="lamp">
+      <div class="shade"></div>
+      <div class="stem"></div>
+      <div class="base"></div>
+    </div>
+
+    <div class="bed">
+      <div class="headboard"></div>
+      <div class="mattress"></div>
+      <div class="blanket"></div>
+      <div class="pillow"></div>
+    </div>
+    <div class="rug"></div>
+
+    <header class="room-heading">
+      <h1>untuk orang yang aku sayang♡</h1>
+      <p>Even miles apart, you still feel like home.</p>
+    </header>
+
+    <!-- FOTO DISEBAR DI BERBAGAI POSISI -->
+    <div class="photo-space" id="photoSpace">
+
+      <figure class="photo p1" data-caption="Awal cerita kita">
+        <img src="foto1.jpg" alt="Kenangan pertama kita">
+        <figcaption>Awal cerita kita ♡</figcaption>
+      </figure>
+
+      <figure class="photo p2" data-caption="Senyum favoritku">
+        <img src="foto2.jpg" alt="Kenangan senyum">
+        <figcaption>Senyum favoritku</figcaption>
+      </figure>
+
+      <figure class="photo p3" data-caption="Orang kesayanganku">
+        <img src="foto3.jpg" alt="Foto orang tersayang">
+        <figcaption>Orang kesayanganku</figcaption>
+      </figure>
+
+      <figure class="photo p4" data-caption="Hari yang indah">
+        <img src="foto4.jpg" alt="Kenangan hari indah">
+        <figcaption>Hari yang indah</figcaption>
+      </figure>
+
+      <figure class="photo p5" data-caption="Satu dari banyak cerita">
+        <img src="foto5.jpg" alt="Satu kenangan kita">
+        <figcaption>Satu dari banyak cerita</figcaption>
+      </figure>
+
+      <figure class="photo p6" data-caption="Tetap jadi favorit">
+        <img src="foto6.jpg" alt="Kenangan favorit">
+        <figcaption>Tetap jadi favorit</figcaption>
+      </figure>
+
+      <figure class="photo p7" data-caption="Jarak bukan akhir">
+        <img src="foto7.jpg" alt="Kenangan hubungan jarak jauh">
+        <figcaption>Jarak bukan akhir</figcaption>
+      </figure>
+
+      <figure class="photo p8" data-caption="Kita, selalu">
+        <img src="foto8.jpg" alt="Foto kita berdua">
+        <figcaption>Kita, selalu ♡</figcaption>
+      </figure>
+    </div>
+
+    <div class="controls">
+      <button class="control" id="musicButton">♫ Putar musik</button>
+      <button class="control" id="pauseButton">Ⅱ Jeda gerakan foto</button>
+      <button class="control" onclick="document.getElementById('memories').scrollIntoView({behavior:'smooth'})">
+        Lihat cerita kita ↓
+      </button>
+    </div>
+  </section>
+
+  <section class="memories-content" id="memories">
+    <h2>Potongan Cerita Kita ♡</h2>
+    <p>Beberapa momen kecil yang selalu ingin kusimpan.</p>
+
+    <div class="media-grid">
+      <video controls playsinline preload="metadata">
+        <source src="video-kita.mp4" type="video/mp4">
+        Browser kamu belum mendukung video.
+      </video>
+
+      <video controls playsinline preload="metadata">
+        <source src="video-kita-2.mp4" type="video/mp4">
+        Browser kamu belum mendukung video.
+      </video>
+    </div>
+
+    <article class="letter">
+      <h2>Untuk abang ♡</h2>
+      <p>
+        allo, abangg. dede buat ini sebagai bentuk dede sayang abang ada juga
+        , foto-foto kita dan foto abang, dan hal-hal
+        sederhana yang mungkin suatu hari akan kita rindukan.
+      </p>
+      <p>
+        Walaupun kita tidak selalu bisa berada di tempat yang sama,
+        dede senang karena kita masih punya cerita untuk dibagikan.
+        Semoga nanti ada lebih banyak kenangan yang bisa kita simpan
+        di sini, satu per satu.
+      </p>
+      <p>Terima kasih sudah menjadi bagian dari ceritaku. ♡</p>
+    </article>
+
+    <footer>Made with love, just for us ♡</footer>
+  </section>
+</main>
+
+<!-- PEMBESAR FOTO -->
+<div id="viewer" hidden role="dialog" aria-modal="true" aria-label="Lihat foto">
+  <div class="viewer-inner">
+    <img id="bigPhoto" src="" alt="Foto kenangan">
+    <div id="photoCaption"></div>
+    <div class="viewer-controls">
+      <button id="zoomOut">− Zoom</button>
+      <button id="zoomIn">+ Zoom</button>
+      <button id="zoomReset">Reset</button>
+      <button id="closeViewer">Tutup ✕</button>
+    </div>
+    <small>Gunakan roda mouse untuk zoom masuk atau keluar.</small>
+  </div>
+</div>
+
+<audio id="music" src="lagu.mp3" loop preload="none"></audio>
+
+<script>
+// GANTI KODE RAHASIA DI BARIS INI
+const SECRET_CODE = "2704";
+
+const lock = document.getElementById("lock");
+const website = document.getElementById("website");
+const passcode = document.getElementById("passcode");
+const message = document.getElementById("message");
+
+document.getElementById("lockForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (passcode.value === SECRET_CODE) {
+    lock.hidden = true;
+    website.hidden = false;
+  } else {
+    message.textContent = "Kode belum benar, coba lagi ya ♡";
+    passcode.value = "";
+    passcode.focus();
+  }
+});
+
+// FOTO BESAR DAN ZOOM
+const viewer = document.getElementById("viewer");
+const bigPhoto = document.getElementById("bigPhoto");
+const photoCaption = document.getElementById("photoCaption");
+let zoom = 1;
+
+function updateZoom() {
+  zoom = Math.max(0.5, Math.min(4, zoom));
+  bigPhoto.style.transform = `scale(${zoom})`;
+}
+
+document.querySelectorAll(".photo").forEach(function(frame) {
+  frame.addEventListener("click", function() {
+    const image = frame.querySelector("img");
+    bigPhoto.src = image.src;
+    bigPhoto.alt = image.alt;
+    photoCaption.textContent = frame.dataset.caption || "";
+    zoom = 1;
+    updateZoom();
+    viewer.hidden = false;
+  });
+});
+
+document.getElementById("zoomIn").addEventListener("click", function() {
+  zoom += 0.25;
+  updateZoom();
+});
+
+document.getElementById("zoomOut").addEventListener("click", function() {
+  zoom -= 0.25;
+  updateZoom();
+});
+
+document.getElementById("zoomReset").addEventListener("click", function() {
+  zoom = 1;
+  updateZoom();
+});
+
+document.getElementById("closeViewer").addEventListener("click", function() {
+  viewer.hidden = true;
+  bigPhoto.src = "";
+});
+
+viewer.addEventListener("click", function(event) {
+  if (event.target === viewer) {
+    viewer.hidden = true;
+    bigPhoto.src = "";
+  }
+});
+
+viewer.addEventListener("wheel", function(event) {
+  event.preventDefault();
+  zoom += event.deltaY < 0 ? 0.15 : -0.15;
+  updateZoom();
+}, { passive: false });
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    viewer.hidden = true;
+    bigPhoto.src = "";
+  }
+});
+
+// MUSIK
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+
+musicButton.addEventListener("click", async function() {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = "Ⅱ Jeda musik";
+    } catch (error) {
+      musicButton.textContent = "Musik belum bisa diputar";
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = "♫ Putar musik";
+  }
+});
+
+// JEDA GERAKAN FOTO
+const pauseButton = document.getElementById("pauseButton");
+let photosPaused = false;
+
+pauseButton.addEventListener("click", function() {
+  photosPaused = !photosPaused;
+
+  document.querySelectorAll(".photo").forEach(function(photo) {
+    photo.style.animationPlayState = photosPaused ? "paused" : "running";
+  });
+
+  pauseButton.textContent = photosPaused
+    ? "▶ Lanjutkan gerakan foto"
+    : "Ⅱ Jeda gerakan foto";
+});
+</script>
+
+</body>
+</html>
